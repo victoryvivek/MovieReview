@@ -5,10 +5,17 @@ const mongoose=require('mongoose');
 
 const app=express();
 
+const userRoutes=require('./routes/user');
+const movieRoutes = require('./routes/movie');
+
 app.set('view engine','ejs');
 app.set('views','views');
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+app.use('/user',userRoutes);
+app.use('/movie', movieRoutes);
 
 app.use((req,res,next)=>{
     console.log('Hey');
