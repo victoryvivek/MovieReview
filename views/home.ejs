@@ -46,21 +46,22 @@
                 <li><a href="#" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
                 color: white;">Search Movie</a></li>
 
-
-                <li><a href="#" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
-                      color: white;">Log out</a></li>
-
                 <li><a href="#" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
                       color: white;"><span class="glyphicon glyphicon-user"></span>User_Profile</a></li>
 
-
-                <li><a href="/user/login" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
-                      color: white;">Log in</a></li>
-                <li><a href="/user/register" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
-                      color: white;">Sign up/Register</a></li>
+                <% if (userId!= undefined ) { %>
+                    
+                    <li><a href="/user/logout" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+                      color: white;">Log out</a></li>
+                    
+                <% }else{ %>
+                    <li><a href="/user/login" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+                        color: white;">Log in</a></li>
+                    <li><a href="/user/register" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+                        color: white;">Sign up/Register</a></li>
+                <% } %>
+                
             </ul>
-
-
 
         </div>
     </nav>

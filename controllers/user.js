@@ -45,9 +45,15 @@ exports.loginUser = (req, res, next) => {
         });
     });
 };
+
 exports.renderRegisterPage=(req,res,next)=>{
     res.render('registration');
 };
+
 exports.renderLoginPage = (req,res, next) => {
     res.render('login');
+};
+
+exports.logoutUser=(req,res,next)=>{
+    return res.redirect('/home');
 };
