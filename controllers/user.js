@@ -14,7 +14,7 @@ exports.registerUser = (req, res, next) => {
             password:encryptedPassword,email:email,contactNo:contactNo});
         return user.save();
     }).then(user=>{
-        return res.redirect('/home');
+        return res.redirect('/home?id='+user._id);
     }).catch(err=>{
         console.log("Error: "+err);
         res.render('registration',{message:'Error occured in registering....Try Again'});
@@ -37,11 +37,11 @@ exports.loginUser = (req, res, next) => {
                 message: 'Wrong Password...Try Again'
             });
         }
-        return res.redirect('/home');
+        return res.redirect('/home?id=' + currentUser._id);
     }).catch(err=>{
         console.log("Error: " + err);
         res.render('login', {
-            message: 'Error occured in registering....Try Again'
+            message: 'Error occured in Logging in....Try Again'
         });
     });
 };
