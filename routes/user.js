@@ -6,9 +6,14 @@ const userControllers=require('../controllers/user');
 
 router.get('/register', userControllers.renderRegisterPage);
 router.post('/register',userControllers.registerUser);
+
 router.post('/login', userControllers.loginUser);
 router.get('/login', userControllers.renderLoginPage);
+
 router.get('/logout', userControllers.logoutUser);
+
 router.get('/profile/:userId',userControllers.userProfile);
+router.get('/edit/profile/:userId', userControllers.renderEditProfilePage);
+router.put('/edit/profile/:userId', userControllers.editUserProfile);
 
 module.exports = router;

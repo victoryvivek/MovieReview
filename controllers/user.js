@@ -84,6 +84,26 @@ exports.userProfile = (req, res, next) => {
     }).catch(err=>{
         console.log(err);
         return res.redirect('/home?id=' + userId);
-    })
+    });
     
+};
+exports.renderEditProfilePage=(req,res,next)=>{
+    return res.render('edit_user_profile');
+};
+exports.editUserProfile=(req,res,next)=>{
+    let userId=req.params.userId;
+    let about=req.body.about;
+    let hobbies = req.body.hobbies;
+    let favouriteMovies = req.body.favouriteMovies;
+    UserAboutModel.findByOne({userId:userId}).then(aboutUser=>{
+        aboutUser.about=about;
+        aboutUser.hobbies=hobbies;
+        aboutUser.favouriteMovies=favouriteMovies;
+        return aboutUser.save();
+    }).then(aboutUser=>{
+        return res.redirect('/user/profile/'+userId);
+    }).catch(err => {
+        console.log("Error editUserProfile "+err);
+        return res.render('edit_user_profile');
+    });
 };
