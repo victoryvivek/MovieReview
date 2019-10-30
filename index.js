@@ -21,7 +21,7 @@ app.use('/movie', movieRoutes);
 app.get('/home',(req,res,next)=>{
     let userId=req.query.id;
     // console.log('id '+userId);
-    res.render('home',{userId:userId});
+    return res.render('home',{userId:userId});
 });
 mongoose
     .connect(

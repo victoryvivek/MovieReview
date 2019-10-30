@@ -46,10 +46,13 @@
                 <li><a href="#" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
                 color: white;">Search Movie</a></li>
 
-                <li><a href="#" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+                
+                <% if (userId!= undefined ) { %>
+                    <% let x="/user/profile/"+userId; %>
+
+                    <li><a href="<%= x %>" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
                       color: white;"><span class="glyphicon glyphicon-user"></span>User_Profile</a></li>
 
-                <% if (userId!= undefined ) { %>
                     
                     <li><a href="/user/logout" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
                       color: white;">Log out</a></li>

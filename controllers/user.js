@@ -1,4 +1,5 @@
 const UserModel=require('../models/user');
+const UserAboutModel=require('../models/user_about');
 const bcrypt=require('bcrypt');
 
 exports.registerUser = (req, res, next) => {
@@ -14,12 +15,15 @@ exports.registerUser = (req, res, next) => {
             password:encryptedPassword,email:email,contactNo:contactNo});
         return user.save();
     }).then(user=>{
+        const aboutUser=new UserAboutModel({userId:user._id});
+        aboutUser.save();
         return res.redirect('/home?id='+user._id);
     }).catch(err=>{
         console.log("Error: "+err);
         res.render('registration',{message:'Error occured in registering....Try Again'});
     });
 };
+
 exports.loginUser = (req, res, next) => {
     const userName=req.body.user_name;
     const password=req.body.user_password;
@@ -56,4 +60,30 @@ exports.renderLoginPage = (req,res, next) => {
 
 exports.logoutUser=(req,res,next)=>{
     return res.redirect('/home');
+};
+
+exports.userProfile = (req, res, next) => {
+    let userId=req.params.userId;
+    let firstName,lastName,about,hobbies,favouriteMovies,noOfReviews;
+    UserModel.findById(userId).then(user=>{
+        firstName=user.firstName;
+        lastName = user.lastName;   
+        return lastName;
+    }).then(lastName=>{
+        UserAboutModel.findOne({userId:userId}).then(aboutUser=>{
+            about=aboutUser.about;
+            hobbies=aboutUser.hobbies;
+            favouriteMovies=aboutUser.favouriteMovies;
+            noOfReviews=aboutUser.noOfReviews
+            return res.render('user_profile',{firstName:firstName,lastName:lastName,
+                about:about,hobbies:hobbies,favouriteMovies:favouriteMovies,noOfReviews:noOfReviews});
+        }).catch(err=>{
+            console.log(err);
+            return res.redirect('/home?id=' + userId);
+        });
+    }).catch(err=>{
+        console.log(err);
+        return res.redirect('/home?id=' + userId);
+    })
+    
 };
