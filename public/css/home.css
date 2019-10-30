@@ -1,0 +1,29 @@
+body {
+    padding-top: 60px;
+    background-color: lightgrey;
+
+}
+
+.mynav {
+    background: #006699;
+    font-family: 'DM Serif Text', serif;
+    position: fixed;
+    width: 100%;
+    top: 0;
+
+}
+
+hr {
+    height: 2px;
+    color: black;
+    background-color: black;
+    width: 100%;
+
+}
+
+
+.base {
+    padding-top: 30px;
+    text-align: center;
+    font-family: 'DM Serif Text', serif;
+}

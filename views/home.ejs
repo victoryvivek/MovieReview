@@ -2,21 +2,75 @@
 <html>
 
 <head>
-    <title>Home</title>
+
+    <meta charset="utf-8">
+    <title>Movie Review</title>
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=DM+Serif+Text&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="stylesheet" href="/css/home.css">
+
 </head>
 
+
 <body>
-    <h1>this is home page</h1>
-    <div>
-        <form action="/user/register">
-            <input type="submit" value="Register">
-        </form>
-    </div>
-    <div>
-        <form action="/user/login">
-            <input type="submit" value="Login">
-        </form>
-    </div>
+
+    <nav class="navbar  mynav" role="navigation" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" style="font-family: 'DM Serif Text', serif;
+            color: white;">Movie Review</a>
+
+            <ul class="nav navbar-nav navbar-right " id="navlist">
+
+                <li><a href="#" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+                color: white;"><span class="glyphicon glyphicon-globe">Home</span></a></li>
+
+                <li><a href="#" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+                color: white;">Movie_Genre</a></li>
+                <li><a href="#" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+                color: white;">Search Movie</a></li>
+
+
+                <li><a href="#" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+                      color: white;">Log out</a></li>
+
+                <li><a href="#" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+                      color: white;"><span class="glyphicon glyphicon-user"></span>User_Profile</a></li>
+
+
+                <li><a href="/user/login" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+                      color: white;">Log in</a></li>
+                <li><a href="/user/register" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+                      color: white;">Sign up/Register</a></li>
+            </ul>
+
+
+
+        </div>
+    </nav>
+
+
+
+
+
+
+
 </body>
 
 </html>
