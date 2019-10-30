@@ -12,15 +12,15 @@ app.set('view engine','ejs');
 app.set('views','views');
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({extended:true}))
 
 
 app.use('/user',userRoutes);
 app.use('/movie', movieRoutes);
 
-app.use((req,res,next)=>{
-    console.log('Hey');
+app.get('/home',(req,res,next)=>{
+    res.render('home');
 });
-
 mongoose
     .connect(
         "mongodb+srv://victory_vivek:vivek123@book-cluster-od9xo.mongodb.net/movieDatabase?retryWrites=true&w=majority", {
