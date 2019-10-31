@@ -45,11 +45,30 @@
                     <i class="fa fa-caret-down"></i>
                 </a>
             </li>
+            <li>
+            
+            <% if (userId!= undefined ) { %>
+                <% let y="/movie/search/"+userId; %>
+                
+                <form  action="<%= y %>">
+                <li><input name="movieName" class="form-control" type="search" placeholder="Search Movie" aria-label="Search">
+                </li>
 
-            <li><input class="form-control " type="search" placeholder="Search Movie" aria-label="Search">
-            </li>
+                <li><a ><span class="glyphicon glyphicon-search"></span></a>
+                </li>
+                </form>
+            <% }else{ %>
+                <% let y="/movie/search/"; %>
 
-            <li><a href="#"><span class="glyphicon glyphicon-search"></span></a>
+                <form action="<%= y %>">
+                    <li><input name="movieName" class="form-control" type="search" placeholder="Search Movie"
+                            aria-label="Search">
+                    </li>
+
+                    <li><a><span class="glyphicon glyphicon-search"></span></a>
+                    </li>
+                </form>
+            <% } %>
             </li>
 
             <% if (userId!= undefined ) { %>

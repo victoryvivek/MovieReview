@@ -15,28 +15,82 @@
 </head>
 
 <body background="/img/sky.jpg">
-    <h1 id="title">FUKREY(2015)</h1>
-    <h3 id="titledetails"> Not Rated | 2h 50min | Comedy,Drama </h3>
-    <img id="movieImage" src="/img/movieimage.jpg" alt="Paris" class="center">
+    <h1 id="title"><%= title %></h1>
+    <h3 id="titledetails"><%= genre %></h3>
+    <img id="movieImage"  class="center" style="background: url(<%= posterUrl %>);">
     <p id="details">
-        The paths of four dream-chasing college friends cross with an array of colourful characters,<br>
-        from a tough-talking Punjabi female don to a Jugaad Baaz college watchman. Mayhem ensues. <br><br><br>
-        RATING : <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <span class="fa fa-star"></span>
+        <%= plot %><br><br><br>
+        RATING : 
+        
+        <% if (rating < 1) { %>
+            <span class="fa fa-star-half-o checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        <% }else if(rating==1){ %>
+            <span class="fa fa-star-half-o checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        <% }else if(rating>1 && rating <2){ %>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star-half-o checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        <% }else if(rating==2){ %>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        <% }else if(rating> 2 && rating < 3){ %>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star-half-o checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        <% }else if(rating==3){ %>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+        <% }else if(rating>3 && rating < 4){ %>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star-half-o checked"></span>
+            <span class="fa fa-star"></span>
+        <% }else if(rating==4){ %>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+        <% }else if(rating>4 && rating < 5){ %>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star-half-o checked"></span>
+        <% }else if(rating==5){ %>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+        <% } %>
+        
+        
         <br>
-        Language : Hindi <br>
-        Director: Mrighdeep Lamba (as Mrigdeep Singh Lamba) <br>
-        Writers: Mrighdeep Lamba (additional dialogue) (as Mrigdeep Singh Lamba), Mrighdeep Lamba (screenplay) (as
-        Mrigdeep Singh Lamba) br
+        Language : <%= language %> <br>
+        Director: <%= director %> <br>
+        Writers: <%= writer %>
     </p>
 
-    <h1 id="titledetails">Previous Comments</h1>
-    <h3 id="titledetails">1.Awesome Movie</h3>
-    <h3 id="titledetails">2.Best Movie Ever</h3>
-    <h3 id="titledetails">3.Time Waste</h3>
     <form>
         <textarea id="commentstyle" name="comment" rows="8" cols="40"
             placeholder="Write Your Review.........."></textarea>
@@ -44,5 +98,44 @@
         <input id="commentsubmit" type="submit" name="" value="SUBMIT">
     </form>
 </body>
+
+<h3 id="titledetails">Previous Comments</h3>
+<hr>
+<i class='fas fa-user-circle' style='font-size:20px;color:white;margin-left:200px'> Karan Kapoor (5 months ago)</i>
+<p id="titledetails">Awesome Movie</p>
+<p style="margin-left:350px;color:white">
+    RATING : <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star"></span>
+    <br>
+    <br>
+</p>
+
+
+<i class='fas fa-user-circle' style='font-size:20px;color:white;margin-left:200px'> Vishal Jangra (8 months ago)</i>
+<p id="titledetails">Best Movie Ever</p>
+<p style="margin-left:350px;color:white">
+    RATING : <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <br>
+    <br>
+</p>
+
+<i class='fas fa-user-circle' style='font-size:20px;color:white;margin-left:200px'> Vivek Aggarwal (1 year ago)</i>
+<p id="titledetails">Time Waste</p>
+<p style="margin-left:350px;color:white">
+    RATING : <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <br>
+    <br>
+</p>
 
 </html>
