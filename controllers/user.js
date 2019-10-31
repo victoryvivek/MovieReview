@@ -76,7 +76,8 @@ exports.userProfile = (req, res, next) => {
             favouriteMovies=aboutUser.favouriteMovies;
             noOfReviews=aboutUser.noOfReviews
             return res.render('user_profile',{firstName:firstName,lastName:lastName,
-                about:about,hobbies:hobbies,favouriteMovies:favouriteMovies,noOfReviews:noOfReviews});
+                about: about, hobbies: hobbies, favouriteMovies: favouriteMovies, noOfReviews: noOfReviews, userId: userId
+                });
         }).catch(err=>{
             console.log(err);
             return res.redirect('/home?id=' + userId);
@@ -88,14 +89,16 @@ exports.userProfile = (req, res, next) => {
     
 };
 exports.renderEditProfilePage=(req,res,next)=>{
-    return res.render('edit_user_profile');
+    let userId=req.params.userId;
+    return res.render('edit_user_profile',{userId:userId});
 };
 exports.editUserProfile=(req,res,next)=>{
+    // console.log('in edit profile');
     let userId=req.params.userId;
     let about=req.body.about;
     let hobbies = req.body.hobbies;
     let favouriteMovies = req.body.favouriteMovies;
-    UserAboutModel.findByOne({userId:userId}).then(aboutUser=>{
+    UserAboutModel.findOne({userId:userId}).then(aboutUser=>{
         aboutUser.about=about;
         aboutUser.hobbies=hobbies;
         aboutUser.favouriteMovies=favouriteMovies;
@@ -104,6 +107,6 @@ exports.editUserProfile=(req,res,next)=>{
         return res.redirect('/user/profile/'+userId);
     }).catch(err => {
         console.log("Error editUserProfile "+err);
-        return res.render('edit_user_profile');
+        return res.redirect('/user/edit/profile/'+userId);
     });
 };

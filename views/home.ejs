@@ -32,41 +32,47 @@
 <body>
 
     <nav class="navbar  mynav" role="navigation" id="navbar">
-        <div class="container">
-            <a class="navbar-brand" style="font-family: 'DM Serif Text', serif;
+
+        <a class="navbar-brand" style="font-family: 'DM Serif Text', serif;
             color: white;">Movie Review</a>
 
-            <ul class="nav navbar-nav navbar-right " id="navlist">
+        <ul class="nav navbar-nav navbar-right" id="navlist">
 
-                <li><a href="#" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
-                color: white;"><span class="glyphicon glyphicon-globe">Home</span></a></li>
 
-                <li><a href="#" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
-                color: white;">Movie_Genre</a></li>
-                <li><a href="#" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
-                color: white;">Search Movie</a></li>
 
-                
-                <% if (userId!= undefined ) { %>
-                    <% let x="/user/profile/"+userId; %>
+            <li>
+                <a class="dropbtn">Genre
+                    <i class="fa fa-caret-down"></i>
+                </a>
+            </li>
 
-                    <li><a href="<%= x %>" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+            <li><input class="form-control " type="search" placeholder="Search Movie" aria-label="Search">
+            </li>
+
+            <li><a href="#"><span class="glyphicon glyphicon-search"></span></a>
+            </li>
+
+            <% if (userId!= undefined ) { %>
+            <% let x="/user/profile/"+userId; %>
+
+            <li><a href="<%= x %>" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
                       color: white;"><span class="glyphicon glyphicon-user"></span>User_Profile</a></li>
-
-                    
-                    <li><a href="/user/logout" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+            <li><a href="/user/logout" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
                       color: white;">Log out</a></li>
-                    
-                <% }else{ %>
-                    <li><a href="/user/login" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
-                        color: white;">Log in</a></li>
-                    <li><a href="/user/register" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
-                        color: white;">Sign up/Register</a></li>
-                <% } %>
-                
-            </ul>
 
-        </div>
+            <% }else{ %>
+
+            <li><a href="/user/login" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+                      color: white;">Log in</a></li>
+            <li><a href="/user/register" class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
+                      color: white;">Sign up</a></li>
+            <% } %>
+
+        </ul>
+
+
+
+
     </nav>
 
 

@@ -14,6 +14,6 @@ router.get('/logout', userControllers.logoutUser);
 
 router.get('/profile/:userId',userControllers.userProfile);
 router.get('/edit/profile/:userId', userControllers.renderEditProfilePage);
-router.put('/edit/profile/:userId', userControllers.editUserProfile);
+router.post('/edit/profile/:userId', userControllers.editUserProfile);
 
 module.exports = router;
