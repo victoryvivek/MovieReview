@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/css/movieStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="utf-8">
@@ -91,51 +92,113 @@
         Writers: <%= writer %>
     </p>
 
-    <form>
-        <textarea id="commentstyle" name="comment" rows="8" cols="40"
-            placeholder="Write Your Review.........."></textarea>
-        <br>
-        <input id="commentsubmit" type="submit" name="" value="SUBMIT">
-    </form>
-</body>
+    <% if(userId==undefined){ %>
+        <h3 id="titledetails">PLEASE LOGIN TO POST A COMMENT</h3>
+    <% }else { %>
+        <!-- <form> -->
+            <textarea id="commentReview" name="comment" rows="8" cols="40"
+                placeholder="Write Your Review.........."></textarea>
+            <br>
+            <input id="commentrating" name="com_rating" placeholder="Write Rating out of 5">
+            <button id="commentsubmit">Submit</button>
+        <!-- </form> -->
+    <% } %>
 
 <h3 id="titledetails">Previous Comments</h3>
 <hr>
-<i class='fas fa-user-circle' style='font-size:20px;color:white;margin-left:200px'> Karan Kapoor (5 months ago)</i>
-<p id="titledetails">Awesome Movie</p>
-<p style="margin-left:350px;color:white">
-    RATING : <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <br>
-    <br>
-</p>
 
+<% for (let index = 0; index < userNameArray.length; index++) {
+    const userName = userNameArray[index];
+    const movieReview=movieReviewArray[index];
+    const movieRating=movieRatingArray[index];
+    const date=dateArray[index] %>
+    <i class='fas fa-user-circle' style='font-size:20px;color:white;margin-left:200px'> <%= userName %> (<%= date %>)</i>
+    <p id="titledetails"><%= movieReview %></p>
+    <p style="margin-left:350px;color:white">
+        RATING :
+        <% if (movieRating < 1) { %>
+        <span class="fa fa-star-half-o checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <% }else if(movieRating==1){ %>
+        <span class="fa fa-star-half-o checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <% }else if(movieRating>1 && movieRating <2){ %>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star-half-o checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <% }else if(movieRating==2){ %>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <% }else if(movieRating> 2 && movieRating < 3){ %>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star-half-o checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <% }else if(movieRating==3){ %>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+        <% }else if(movieRating>3 && movieRating < 4){ %>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star-half-o checked"></span>
+        <span class="fa fa-star"></span>
+        <% }else if(movieRating==4){ %>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <% }else if(movieRating>4 && movieRating < 5){ %>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star-half-o checked"></span>
+        <% }else if(movieRating==5){ %>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <% } %>
+    </p>
+<% } %>
 
-<i class='fas fa-user-circle' style='font-size:20px;color:white;margin-left:200px'> Vishal Jangra (8 months ago)</i>
-<p id="titledetails">Best Movie Ever</p>
-<p style="margin-left:350px;color:white">
-    RATING : <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <br>
-    <br>
-</p>
+    <p id="test" style="color: white;"> Bye</p>
 
-<i class='fas fa-user-circle' style='font-size:20px;color:white;margin-left:200px'> Vivek Aggarwal (1 year ago)</i>
-<p id="titledetails">Time Waste</p>
-<p style="margin-left:350px;color:white">
-    RATING : <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <br>
-    <br>
-</p>
+    <% let z="/movie/add/review/"+userId+"/"+imdbId %>
+    <script>
+        
+        $(document).ready(function () {
+            $("button").click(function(){
+                $("#test").html("Button clicked");
+                $.post("<%= z %>",{
+                    movieReview:$("#commentReview").val(),
+                    movieRating:$("#commentrating").val()
+                },function(data,status){
+                    $("#test").html(data);
+                })
+            });
+        });
+    </script>
+
+</body>
+
 
 </html>

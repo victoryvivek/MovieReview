@@ -2,21 +2,29 @@ const mongoose=require('mongoose');
 const Schema=mongoose.Schema;
 
 const reviewSchema=new Schema({
-    userId:{
-        type:String,
-        required:true
+    userIdArray:{
+        type:Array,
+        of: String
     },
-    movieReview:{
+    userNameArray:{
+        type:Array,
+        of: String
+    },
+    movieReviewArray:{
+        type: Array,
+        of: String
+    },
+    imdbId:{
         type: String,
         required: true
     },
-    movieId:{
-        type: String,
-        required: true
+    movieRatingArray:{
+        type: Array,
+        of: Number
     },
-    movieRating:{
-        type: String,
-        required: true
+    dateArray:{
+        type:Array,
+        of: Date
     }
 });
 
