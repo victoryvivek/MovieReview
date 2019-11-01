@@ -13,9 +13,13 @@
             color: orange;
         }
     </style>
+    <%- include('includes/head_css.ejs') %>
 </head>
 
 <body background="/img/sky.jpg">
+
+    <%- include('includes/navigation.ejs') %>
+    
     <h1 id="title"><%= title %></h1>
     <h3 id="titledetails"><%= genre %></h3>
     <img id="movieImage" class="center" style="background: url(<%= posterUrl %>);">

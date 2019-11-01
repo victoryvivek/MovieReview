@@ -52,11 +52,15 @@ exports.loginUser = (req, res, next) => {
 };
 
 exports.renderRegisterPage=(req,res,next)=>{
-    res.render('registration');
+    const userId = req.body.contact_no;
+    res.render('registration',{userId:userId});
 };
 
 exports.renderLoginPage = (req,res, next) => {
-    res.render('login');
+    const userId = req.body.contact_no;
+    res.render('login', {
+        userId: userId
+    });
 };
 
 exports.logoutUser=(req,res,next)=>{
