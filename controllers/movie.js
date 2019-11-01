@@ -17,7 +17,7 @@ exports.searchMovieForReview=(req,res,next)=>{
             data+=chunk;
         });
         resp.on('end', () => {
-            console.log(data);
+            // console.log(data);
             parsedData = JSON.parse(data);
             if(parsedData.Response=='True'){
                 isResponse=true;
@@ -38,7 +38,7 @@ exports.searchMovieForReview=(req,res,next)=>{
                     let result = element.Value.split("/");
                     rating += (Number(result[0]) / Number(result[1]))*5;
                 }
-                console.log("imdbid "+imdbId);
+                // console.log("imdbid "+imdbId);
 
                 ReviewModel.findOne({imdbId:imdbId}).then(movie=>{
                     if(!movie){
@@ -99,8 +99,8 @@ exports.addReview=(req,res,next)=>{
         return userName;
     }).then(userName=>{
         ReviewModel.findOne({imdbId:imdbId}).then(movie=>{
-            console.log("Movie "+movie);
-            console.log("review "+movieReview+" Rating "+movieRating);
+            // console.log("Movie "+movie);
+            // console.log("review "+movieReview+" Rating "+movieRating);
             movie.userIdArray.push(userId);
             movie.userNameArray.push(userName);
             movie.movieReviewArray.push(movieReview);
@@ -108,7 +108,17 @@ exports.addReview=(req,res,next)=>{
             movie.dateArray.push(date);
             return movie.save();
         }).then(movie=>{
+            let userNameArray=movie.userNameArray;
+            let movieReviewArray=movie.movieReviewArray;
+            let movieRatingArray=movie.movieRatingArray;
+            let dateArray=movie.dateArray;
 
+            return res.json({
+                userNameArray:userNameArray,
+                movieReviewArray:movieReviewArray,
+                movieRatingArray:movieRatingArray,
+                dateArray:dateArray
+            });
         }).catch(err => {
             console.log('addReview reviewModel Error ' + err);
         });
