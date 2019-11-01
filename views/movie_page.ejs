@@ -197,7 +197,8 @@
                 $("#commentrating").val('');
                 $.post("<%= z %>", {
                     movieReview: movieReview,
-                    movieRating:movieRating
+                    movieRating:movieRating,
+                    movieName: $("#title").text()
                 }, function (data, status) {
                     // console.log(data);
                     // var parsedData = JSON.parse(data);

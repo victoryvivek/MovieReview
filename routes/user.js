@@ -16,4 +16,6 @@ router.get('/profile/:userId',userControllers.userProfile);
 router.get('/edit/profile/:userId', userControllers.renderEditProfilePage);
 router.post('/edit/profile/:userId', userControllers.editUserProfile);
 
+router.get('/reviews/:userId', userControllers.getUserReviews);
+
 module.exports = router;

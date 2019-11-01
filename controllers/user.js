@@ -1,5 +1,6 @@
 const UserModel=require('../models/user');
 const UserAboutModel=require('../models/user_about');
+const UserReviewCountModel=require('../models/userReviewCount');
 const bcrypt=require('bcrypt');
 
 exports.registerUser = (req, res, next) => {
@@ -109,4 +110,17 @@ exports.editUserProfile=(req,res,next)=>{
         console.log("Error editUserProfile "+err);
         return res.redirect('/user/edit/profile/'+userId);
     });
+};
+
+exports.getUserReviews=(req,res,next)=>{
+    let userId=req.params.userId;
+
+    UserReviewCountModel.findOne({userId:userId}).then(userReviewCount=>{
+        return res.render('user_review_page',{
+            reviewArray:userReviewCount.reviewArray,
+            ratingArray:userReviewCount.ratingArray,
+            imdbIdArray:userReviewCount.imdbIdArray,
+            movieNameArray:userReviewCount.movieNameArray
+        });
+    })
 };

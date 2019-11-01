@@ -91,10 +91,15 @@ exports.searchMovieForReview=(req,res,next)=>{
 
 exports.addReview=(req,res,next)=>{
     const userId=req.params.userId;
+    const imdbId = req.params.imdbId;
     const movieReview=req.body.movieReview;
     const movieRating=req.body.movieRating;
+    const movieName = req.body.movieName;
+
+    // console.log(req.body);
     const date=new Date();
-    const imdbId=req.params.imdbId;
+    
+    
     let userName;
 
     UserAboutModel.findOne({userId:userId}).then(user=>{
@@ -108,6 +113,8 @@ exports.addReview=(req,res,next)=>{
             userReviewCount.reviewArray.push(movieReview);
             userReviewCount.ratingArray.push(movieRating);
             userReviewCount.imdbIdArray.push(imdbId);
+            userReviewCount.movieNameArray.push(movieName);
+            // console.log("move name "+movieName);
             userReviewCount.save();
         });
     }).catch(err=>{

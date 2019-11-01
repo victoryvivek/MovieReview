@@ -17,6 +17,10 @@ const userReviewCountSchema = new Schema({
     imdbIdArray:{
         type: Array, 
         of: String
+    },
+    movieNameArray: {
+        type: Array
+        // of: String
     }
 });
 
