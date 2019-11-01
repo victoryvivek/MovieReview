@@ -1,5 +1,7 @@
 const ReviewModel=require('../models/review');
 const UserModel=require('../models/user');
+const UserReviewCountModel=require('../models/userReviewCount');
+const UserAboutModel = require('../models/user_about');
 const http=require('http');
 
 const APIKEY = "e2faa4d0";
@@ -94,6 +96,24 @@ exports.addReview=(req,res,next)=>{
     const date=new Date();
     const imdbId=req.params.imdbId;
     let userName;
+
+    UserAboutModel.findOne({userId:userId}).then(user=>{
+        user.noOfReviews+=1;
+        return user.save();
+    }).then(userAbout=>{
+        UserReviewCountModel.findOne({userId:userId}).then(userReviewCount=>{
+            if(!userReviewCount){
+                userReviewCount=new UserReviewCountModel({userId:userId});
+            }
+            userReviewCount.reviewArray.push(movieReview);
+            userReviewCount.ratingArray.push(movieRating);
+            userReviewCount.imdbIdArray.push(imdbId);
+            userReviewCount.save();
+        });
+    }).catch(err=>{
+        console.log('addReview UserReviewCount Error ' + err);
+    });
+
     UserModel.findById(userId).then(user=>{
         userName=user.firstName+' '+user.lastName;
         return userName;
