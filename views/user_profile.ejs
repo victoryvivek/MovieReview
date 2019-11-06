@@ -74,8 +74,13 @@
                             <h2 style="color:white"><strong><%= noOfReviews %></strong></h2>
                             <p ><small>No.of Reviews</small></p>
 
-                                <button type="button" class="b1 btn btn-primary"><span class="fa fa-gear" ></span>Reviews
-                                </button>
+                                <!-- <button type="button" class="b1 btn btn-primary">
+                                    <span class="fa fa-gear" ></span>Reviews
+                                </button> -->
+
+                                <% let reviewUrl="/user/reviews/"+userId; %>
+                                <a href="<%= reviewUrl %>" class="b1 btn btn-primary"><span
+                                        class="fa fa-gear"></span>Reviews</a>
 
 
 

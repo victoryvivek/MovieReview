@@ -121,6 +121,7 @@ exports.getUserReviews=(req,res,next)=>{
 
     UserReviewCountModel.findOne({userId:userId}).then(userReviewCount=>{
         return res.render('user_review_page',{
+            userId:userId,
             reviewArray:userReviewCount.reviewArray,
             ratingArray:userReviewCount.ratingArray,
             imdbIdArray:userReviewCount.imdbIdArray,
