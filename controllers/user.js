@@ -21,7 +21,10 @@ exports.registerUser = (req, res, next) => {
         return res.redirect('/home?id='+user._id);
     }).catch(err=>{
         console.log("Error: "+err);
-        res.render('registration',{message:'Error occured in registering....Try Again'});
+        res.render('registration', {
+            userId: undefined,
+            message: 'Error occured in registering....Try Again'
+        });
     });
 };
 
@@ -32,21 +35,23 @@ exports.loginUser = (req, res, next) => {
 
     UserModel.findOne({userName:userName}).then(user=>{
         if(!user){
-            return res.render('login',{message:'Invalid username...Try Again'});
+            return res.render('login',{userId:undefined,message:'Invalid username...Try Again'});
         }
         currentUser=user;
         return bcrypt.compare(password,user.password);
     }).then(isEqual=>{
         if(!isEqual){
             return res.render('login', {
-                message: 'Wrong Password...Try Again'
+                message: 'Wrong Password...Try Again',
+                userId: undefined
             });
         }
         return res.redirect('/home?id=' + currentUser._id);
     }).catch(err=>{
         console.log("Error: " + err);
         res.render('login', {
-            message: 'Error occured in Logging in....Try Again'
+            message: 'Error occured in Logging in....Try Again',
+            userId: undefined
         });
     });
 };
@@ -118,14 +123,31 @@ exports.editUserProfile=(req,res,next)=>{
 
 exports.getUserReviews=(req,res,next)=>{
     let userId=req.params.userId;
+    
+    let modifiedDateArray = [];
 
     UserReviewCountModel.findOne({userId:userId}).then(userReviewCount=>{
+
+        let dateArray = userReviewCount.dateArray;
+        for (let i = 0; i < dateArray.length; i++) {
+            let date = dateArray[i].toString();
+            let modifiedDate = date.split(' ')
+            let element = '';
+            for (let j = 0; j < 5; j++) {
+                element += modifiedDate[j] + " ";
+            }
+            modifiedDateArray.push(element);
+            console.log(modifiedDate);
+        }
+
+
         return res.render('user_review_page',{
             userId:userId,
             reviewArray:userReviewCount.reviewArray,
             ratingArray:userReviewCount.ratingArray,
             imdbIdArray:userReviewCount.imdbIdArray,
-            movieNameArray:userReviewCount.movieNameArray
+            movieNameArray:userReviewCount.movieNameArray,
+            dateArray: modifiedDateArray
         });
     })
 };

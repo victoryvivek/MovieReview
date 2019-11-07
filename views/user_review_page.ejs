@@ -22,9 +22,12 @@
     <% for (let index = 0; index < reviewArray.length; index++) {
             const review = reviewArray[index];
             const movieRating =ratingArray[index];
-            const movieName=movieNameArray[index]; %>
+            const movieName=movieNameArray[index];
+            const date=dateArray[index]; %>
+
 
         <div id="review" class="container">
+                
                 <h2 style="color: white;">Movie Name : <%= movieName %></h2>
                 <p style="color: white;">Review : <%= review %></p>
                 <p style="color: white;">
@@ -92,6 +95,7 @@
                     <span class="fa fa-star checked"></span>
                     <% } %>
                 </p>
+                <p style="color: white;"><%= date %></p>
         </div>
         <br>
     <% } %>

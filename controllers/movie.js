@@ -45,7 +45,7 @@ exports.searchMovieForReview = (req, res, next) => {
                     rating += (Number(result[0]) / Number(result[1])) * 5;
                 }
                 // console.log("imdbid "+imdbId);
-                console.log('rating ' + rating);
+                // console.log('rating ' + rating);
 
                 let modifiedDateArray = [];
 
@@ -65,7 +65,7 @@ exports.searchMovieForReview = (req, res, next) => {
                     userNameArray = movie.userNameArray;
                     dateArray = movie.dateArray;
 
-                    console.log(dateArray);
+                    // console.log(dateArray);
                     for (let i = 0; i < dateArray.length; i++) {
                         let date = dateArray[i].toString();
                         let modifiedDate = date.split(' ')
@@ -74,7 +74,7 @@ exports.searchMovieForReview = (req, res, next) => {
                             element += modifiedDate[j] + " ";
                         }
                         modifiedDateArray.push(element);
-                        console.log(modifiedDate);
+                        // console.log(modifiedDate);
                     }
 
                     return res.render('movie_page', {
@@ -145,6 +145,7 @@ exports.addReview = (req, res, next) => {
             userReviewCount.ratingArray.push(movieRating);
             userReviewCount.imdbIdArray.push(imdbId);
             userReviewCount.movieNameArray.push(movieName);
+            userReviewCount.dateArray.push(date);
             // console.log("move name "+movieName);
             userReviewCount.save();
         });
@@ -173,11 +174,27 @@ exports.addReview = (req, res, next) => {
             let movieRatingArray = movie.movieRatingArray;
             let dateArray = movie.dateArray;
 
+            // console.log('dateArray '+dateArray);
+
+
+            let modifiedDateArray=[];
+            for (let i = 0; i < dateArray.length; i++) {
+                let date = dateArray[i].toString();
+                // console.log(date);
+                let modifiedDate = date.split(' ')
+                    var x = '';
+                    // console.log(modifiedDate);
+                for (let j = 0; j < 5; j++) {
+                    x+= modifiedDate[j] + " ";
+                }
+                modifiedDateArray.push(x);
+            }
+
             return res.json({
                 userNameArray: userNameArray,
                 movieReviewArray: movieReviewArray,
                 movieRatingArray: movieRatingArray,
-                dateArray: dateArray
+                dateArray: modifiedDateArray
             });
         }).catch(err => {
             console.log('addReview reviewModel Error ' + err);

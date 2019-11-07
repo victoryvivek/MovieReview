@@ -21,6 +21,9 @@ const userReviewCountSchema = new Schema({
     movieNameArray: {
         type: Array
         // of: String
+    },
+    dateArray:{
+        type: Array
     }
 });
 
