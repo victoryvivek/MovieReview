@@ -1,23 +1,27 @@
 <nav class="navbar  mynav shift" role="navigation" id="navbar">
 
-  <% let x; %>
-  <% if (userId==undefined) { %>
-      <% x="/home"; %>
-  <% }else{ %>
-      <% x="/home/"+userId; %>
-  <% } %>
-    <a href="<%= x %>"><img src="/img/logo.jfif" alt="hii" class="img-circle img-responsive" height="125px" width="125px"></a>
+    <% let x; %>
+    <% if (userId==undefined) { %>
+    <% x="/home"; %>
+    <% }else{ %>
+    <% x="/home/"+userId; %>
+    <% } %>
+    <a href="<%= x %>"><img src="/img/logo.jfif" alt="hii" class="img-circle img-responsive" height="125px"
+            width="125px"></a>
 
     <ul class="nav navbar-nav navbar-right" id="navlist">
-      <li><a  class="btn btn-simple" style="font-family: 'DM Serif Text', serif;
-                    color: white;">Genre</a></li>
+        <li><a class="page scroll" style="font-family: 'DM Serif Text', serif;
+                    color: white;" href="#about">About</a></li>
+        <li><a class="page scroll" style="font-family: 'DM Serif Text', serif;
+        color: white;" href="#team">Team</a></li>
         <li>
 
             <% if (userId!= undefined ) { %>
             <% let y="/movie/search/"+userId; %>
 
             <form action="<%= y %>">
-        <li><input name="movieName" class="form-control" type="search" placeholder="Search Movie,TV Shows and more....." aria-label="Search">
+        <li><input name="movieName" class="form-control" type="search" placeholder="Search Movie,TV Shows and more....."
+                aria-label="Search">
         </li>
         </form>
         <% }else{ %>
@@ -55,3 +59,7 @@
 
 
 </nav>
+
+</body>
+
+</html>
